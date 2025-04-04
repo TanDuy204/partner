@@ -89,9 +89,9 @@ class DestinationListWidget extends StatelessWidget {
                                           icon: const Icon(Icons.phone,
                                               color: Colors.white),
                                           onPressed: () {
-                                            // destinationController
-                                            //     .callPhoneNumber(
-                                            //         destination.contactPhone);
+                                            destinationController
+                                                .callPhoneNumber(
+                                                    destination.contactPhone);
                                           },
                                         ),
                                       ),

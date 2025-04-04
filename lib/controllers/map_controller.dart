@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-// import 'package:geocoding/geocoding.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import "package:http/http.dart" as http;
 import 'package:latlong2/latlong.dart';
@@ -59,9 +59,9 @@ class MapsController extends GetxController {
 
   void loadDestinations(List<DestinationModel> data) {
     destinations.assignAll(data);
+    _updateAllCoordinates();
   }
 
-  /// Ham gọi
   Future<void> callPhoneNumber(String phoneNumber) async {
     final Uri url = Uri(scheme: 'tel', path: phoneNumber);
     if (await canLaunchUrl(url)) {
@@ -71,7 +71,7 @@ class MapsController extends GetxController {
     }
   }
 
-  ///Api
+  ///API
   Future<List<LatLng>> getRoute(LatLng start, LatLng end) async {
     final url = Uri.parse(
       'https://router.project-osrm.org/route/v1/driving/'
@@ -104,29 +104,31 @@ class MapsController extends GetxController {
     clearRoute();
     if (driverLocation.value != null) {
       List<LatLng> route = await getRoute(driverLocation.value!,
-          LatLng(destination.latitude, destination.longitude));
+          LatLng(destination.latitude.value, destination.longitude.value));
       selectedRoute.assignAll(route);
     }
   }
 
-  // Future<void> updateAddress(DestinationModel destination) async {
-  //   try {
-  //     List<Placemark> placemarks = await placemarkFromCoordinates(
-  //       destination.latitude,
-  //       destination.longitude,
-  //     );
-  //
-  //     if (placemarks.isNotEmpty) {
-  //       Placemark place = placemarks.first;
-  //       String newAddress =
-  //           "${place.street}, ${place.locality}, ${place.country}";
-  //
-  //       destination.address.value = newAddress;
-  //
-  //       print("Địa chỉ: $newAddress");
-  //     }
-  //   } catch (e) {
-  //     destination.address.value = "Không tìm thấy địa chỉ";
-  //   }
-  // }
+  /// Cập nhật tọa độ từ địa chỉ
+  Future<void> updateCoordinates(DestinationModel destination) async {
+    try {
+      String address = destination.address.value;
+
+      List<Location> locations = await locationFromAddress(address);
+      if (locations.isNotEmpty) {
+        destination.latitude.value = locations.first.latitude;
+        destination.longitude.value = locations.first.longitude;
+      }
+    } catch (e) {
+      print("Error: $e");
+    }
+  }
+
+  Future<void> _updateAllCoordinates() async {
+    for (var destination in destinations) {
+      if (destination.address.value.isNotEmpty) {
+        await updateCoordinates(destination);
+      }
+    }
+  }
 }

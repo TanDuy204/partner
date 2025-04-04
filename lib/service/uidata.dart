@@ -62,9 +62,7 @@ List<DestinationModel> destinationList = [
     note: "Gom đủ khối lượng không phát sinh",
     contactName: "Chị Giao",
     contactPhone: "0123456789",
-    address: "123 Đường ABC, Quận 1, TP.HCM",
-    latitude: 16.4667,
-    longitude: 107.5944,
+    address: " 1, Hà Khê, Kim Long, Thành phố Huế, Thừa Thiên Huế, Việt Nam",
   ),
   DestinationModel(
     companyName: "Công Ty TNHH ABC",
@@ -74,9 +72,7 @@ List<DestinationModel> destinationList = [
     note: "Có phát sinh khối lượng, cần kiểm tra lại",
     contactName: "Anh Huy",
     contactPhone: "0987654321",
-    address: "456 Đường XYZ, Quận 1, TP.HCM",
-    latitude: 16.4638,
-    longitude: 107.5899,
+    address: "Đại Nội, Phú Hòa, Thành phố Huế, Thừa Thiên Huế, Việt Nam",
   ),
 ];
 List<DeliveryReceiptModel> deliveryReceiptList = [

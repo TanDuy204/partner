@@ -23,8 +23,14 @@ class _MapScreenState extends State<MapScreen> {
   @override
   void initState() {
     super.initState();
-    // mapState.updateAddress(widget.destinations.first);
     mapController = MapController();
+    _updateAllCoordinates();
+  }
+
+  Future<void> _updateAllCoordinates() async {
+    for (var destination in widget.destinations) {
+      await mapState.updateCoordinates(destination);
+    }
   }
 
   @override
@@ -68,8 +74,8 @@ class _MapScreenState extends State<MapScreen> {
                     ),
                     ...widget.destinations.map((destination) {
                       return Marker(
-                        point:
-                            LatLng(destination.latitude, destination.longitude),
+                        point: LatLng(destination.latitude.value,
+                            destination.longitude.value),
                         child: GestureDetector(
                           onTap: () =>
                               mapState.fetchRouteToDestination(destination),
@@ -103,11 +109,11 @@ class _MapScreenState extends State<MapScreen> {
             );
           }),
           Positioned(
-            bottom: 50,
+            bottom: 20,
             left: 20,
             right: 20,
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
@@ -141,10 +147,12 @@ class _MapScreenState extends State<MapScreen> {
                       ),
                     ),
                     child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                      child: Text("Xem",
-                          style: AppTextStyles.buttonLabel(context)),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 10),
+                      child: Text(
+                        "Xem",
+                        style: AppTextStyles.buttonLabel(context),
+                      ),
                     ),
                   ),
                 ],
@@ -183,7 +191,8 @@ class _MapScreenState extends State<MapScreen> {
               if (widget.destinations.isNotEmpty) {
                 final firstDestination = widget.destinations.first;
                 mapController.moveAndRotate(
-                  LatLng(firstDestination.latitude, firstDestination.longitude),
+                  LatLng(firstDestination.latitude.value,
+                      firstDestination.longitude.value),
                   14.0,
                   0,
                 );

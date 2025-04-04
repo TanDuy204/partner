@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class DestinationModel {
+class DestinationModel extends GetxController {
   final String companyName;
   final int bd;
   final int cc;
@@ -8,10 +8,10 @@ class DestinationModel {
   final String note;
   final String contactName;
   final String contactPhone;
-  final double latitude;
-  final double longitude;
   RxBool isSigned;
   RxString address;
+  RxDouble latitude;
+  RxDouble longitude;
 
   DestinationModel({
     required this.companyName,
@@ -23,8 +23,10 @@ class DestinationModel {
     required this.contactPhone,
     bool isSigned = false,
     required String address,
-    required this.latitude,
-    required this.longitude,
+    double latitude = 0.0,
+    double longitude = 0.0,
   })  : isSigned = RxBool(isSigned),
-        address = RxString(address);
+        address = RxString(address),
+        latitude = RxDouble(latitude),
+        longitude = RxDouble(longitude);
 }
