@@ -1,19 +1,18 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:partner/routes/app_route.dart';
 
-// void main() {
-//   runApp(const MyApp());
-// }
-
 void main() {
-  runApp(
-    DevicePreview(
-      builder: (context) => MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
+
+// void main() {
+//   runApp(
+//     DevicePreview(
+//       builder: (context) => MyApp(),
+//     ),
+//   );
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

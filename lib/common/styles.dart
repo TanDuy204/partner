@@ -10,8 +10,10 @@ class AppTextStyles {
       return baseSize * 0.90;
     } else if (screenWidth < 600) {
       return baseSize;
+    } else if (screenWidth < 800) {
+      return baseSize * 1.1;
     } else {
-      return baseSize * 1.5;
+      return baseSize * 1.2;
     }
   }
 
