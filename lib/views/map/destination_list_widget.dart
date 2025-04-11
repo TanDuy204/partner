@@ -89,9 +89,9 @@ class DestinationListWidget extends StatelessWidget {
                                           icon: const Icon(Icons.phone,
                                               color: Colors.white),
                                           onPressed: () {
-                                            // destinationController
-                                            //     .callPhoneNumber(
-                                            //         destination.contactPhone);
+                                            destinationController
+                                                .callPhoneNumber(
+                                                    destination.contactPhone);
                                           },
                                         ),
                                       ),
@@ -109,8 +109,8 @@ class DestinationListWidget extends StatelessWidget {
                                                       ));
 
                                               if (result == "done") {
-                                                // destinationController
-                                                // .markAsSigned(index);
+                                                destinationController
+                                                    .markAsSigned(index);
                                               }
                                             },
                                       child: Row(
