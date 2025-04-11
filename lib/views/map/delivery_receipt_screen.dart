@@ -20,7 +20,6 @@ class DeliveryReceiptScreen extends StatefulWidget {
 
 class _DeliveryReceiptScreenState extends State<DeliveryReceiptScreen> {
   late final DeliveryReceiptController deliveryReceiptController;
-  final TextEditingController weightController = TextEditingController();
 
   @override
   void initState() {
@@ -146,7 +145,6 @@ class _DeliveryReceiptScreenState extends State<DeliveryReceiptScreen> {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: widget.deliveryReceipt.length,
               itemBuilder: (context, receiptIndex) {
-                final receipt = widget.deliveryReceipt[receiptIndex];
                 return Container(
                   margin: const EdgeInsets.symmetric(vertical: 8),
                   child: Obx(() {

@@ -258,13 +258,15 @@ class HomeScreen extends StatelessWidget {
                                     Text(
                                       task.title,
                                       style:
-                                          AppTextStyles.bodyTextLarge(context),
+                                          AppTextStyles.bodyTextLarge(context)
+                                              .copyWith(color: Colors.white),
                                     ),
                                     const SizedBox(height: 4),
                                     Text(
                                       task.description,
                                       style:
-                                          AppTextStyles.bodyTextMedium(context),
+                                          AppTextStyles.bodyTextMedium(context)
+                                              .copyWith(color: Colors.white),
                                     ),
                                     const SizedBox(height: 8),
                                     Row(
@@ -275,7 +277,8 @@ class HomeScreen extends StatelessWidget {
                                         Text(
                                           DateFormat.Hm().format(task.datetime),
                                           style: AppTextStyles.bodyTextMedium(
-                                              context),
+                                                  context)
+                                              .copyWith(color: Colors.white),
                                         ),
                                       ],
                                     ),

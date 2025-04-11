@@ -16,7 +16,7 @@ class AppRoutes {
         transition: Transition.fadeIn),
     GetPage(
         name: tripSchedule,
-        page: () => TripScheduleScreen(),
+        page: () => const TripScheduleScreen(),
         transition: Transition.fadeIn),
   ];
 }
